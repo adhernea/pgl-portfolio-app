@@ -8,6 +8,7 @@ import {
   View,
   Image,
 } from "react-native";
+import Header from "./components/header/Header";
 import QRCode from "react-native-qrcode-svg";
 
 export default function App() {
@@ -15,32 +16,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <Text style={styles.firsttoprowContainer}>My Portfolio App</Text>
-        <View style={styles.rowTopSecondContainer}>
-          <Pressable
-            style={styles.buttonruta}
-            onPress={() => setDisplayMyQR(true)}
-          >
-            <Text
-              style={{
-                ...{
-                  color: "white",
-                  fontWeight: "bold",
-                  textTransform: "uppercase",
-                },
-                ...styles.shadoxboxing,
-              }}
-            >
-              Mi info
-            </Text>
-          </Pressable>
-          <Button
-            onPress={() => setDisplayMyQR(false)}
-            title="Mi Repo"
-            color="light-gray"
-            accessibilityLabel="Un botón pal QR"
-          />
-        </View>
+        <Header></Header>
       </View>
       {displayMyQR ? (
         <View style={styles.bodystails}>
@@ -66,7 +42,7 @@ export default function App() {
                     fontSize: 20,
                   }}
                 >
-                  Descripción sobre mí!
+                  Descripción sobre puto!
                 </Text>
                 <Text>
                   Soy profe y me gusta mi trabajo aunque a veces me de por
