@@ -1,35 +1,27 @@
 import { useState } from "react";
-import {
-  Button,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import Header from "./components/header/Header";
 import Bodys from "./components/body/Bodys";
 import QRCode from "react-native-qrcode-svg";
 
 export default function App() {
-  const [displayMyQR, setDisplayMyQR] = useState(true);
+  const [displayMyQR, setDisplayMyQR] = useState<boolean>(true);
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <Header></Header>
-      </View>
-      {displayMyQR ? (
-        <View style={styles.bodystails}>
-         <Bodys></Bodys>
-        </View>
-      ) : (
-        <View style={styles.bodystails}>
-          <View style={styles.CentrarcodigoQR}>
-            <QRCode value="https://github.com/adhernea" />
+        <Header setDisplayMyQR={setDisplayMyQR} /> 
+
+        {displayMyQR ? (
+          <View>
+            <Bodys />
           </View>
-        </View>
-      )}
+        ) : (
+          <View style={styles.qrContainer}>
+            <QRCode value="https://github.com/The-Albertox" />
+          </View>
+        )}
+      </View>
     </View>
   );
 }
@@ -38,71 +30,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
   topContainer: {
     height: "15%",
     paddingTop: 50,
     width: "100%",
   },
-  firsttoprowContainer: {
-    backgroundColor: "gray",
-    textAlign: "center",
-    fontWeight: "bold",
-    textAlignVertical: "center",
-    fontSize: 30,
-  },
-  rowTopSecondContainer: {
-    flexDirection: "row",
-    backgroundColor: "darkgray",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonruta: {
-    width: "50%",
-  },
-  bodystails: {
-    width: "100%",
-    borderWidth: 2,
+  bodyContainer: {
     borderColor: "black",
     alignItems: "center",
-    justifyContent: "space-between",
-    height: "85%",
-  },
-  avatar: {
-    height: 90,
-    width: 90,
-    borderRadius: 100,
-  },
-  cosasQmeGustanMuxoEstails: {
-    borderColor: "black",
-    borderWidth: 1,
-    borderStyle: "dashed",
-    padding: 20,
-    color: "darkred",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    fontSize: 16,
-    backgroundColor: "silver",
-  },
-  CentrarcodigoQR: {
     justifyContent: "center",
-    borderWidth: 1,
+  },
+  qrContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: "50%",
     width: "100%",
     height: "100%",
-    alignItems: "center",
-  },
-  shadoxboxing: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-
-    elevation: 15,
   },
 });

@@ -6,31 +6,28 @@ const Bodys = () => {
       <View style={styles.headerContainer}>
         <Image
           style={styles.avatar}
-          source={require("../../assets/SofyanAmrabat.jpg")}
+          source={require("../../assets/authors.jpg")}
         />
         <View style={styles.descriptionContainer}>
           <Text style={styles.descriptionTitle}>Descripción sobre mí!</Text>
           <Text>
-            Soy profe y me gusta mi trabajo aunque a veces me dé por enrevesar
-            prácticas para mis queridos alumnos
+            Soy un alumno y me gusta estudiar(no es verdad) y en mi tiempo libre
+            me gusta jugar videojuegos, y romper el codigo de maneras que ni yo
+            se como
           </Text>
         </View>
       </View>
       <Text style={styles.sectionTitle}>Cosas que me gustan mucho:</Text>
       <ScrollView style={styles.scrollView}>
         {[
-          "Salir a pasear",
-          "Senderismo",
-          "Ir a la playita",
+          "Salir con mi pareja",
+          "Ir a la playa",
           "Domingos de misa",
-          "La guitarrita",
-          "El monte con lluvia",
-          "Viajar",
-          "Música variadita",
-          "Anime",
-          "Ducharme",
+          "Escuchar música",
+          "Manga",
           "Videojuegos",
           "Ir de cenar romántica",
+          "romper el codigo",
         ].map((item, index) => (
           <Text key={index} style={styles.interestsText}>
             {item}

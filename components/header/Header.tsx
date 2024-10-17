@@ -1,36 +1,17 @@
-import { useState } from "react";
+import { Pressable, View, Text, StyleSheet } from "react-native";
 
-import { Button, Pressable, View, Text, StyleSheet } from "react-native";
-
-const Header = () => {
-  const [displayMyQR, setDisplayMyQR] = useState(true);
+const Header = ({ setDisplayMyQR }: any) => {
   return (
     <View>
-      <Text style={styles.firsttoprowContainer}>My Portfolio App</Text>
-      <View style={styles.rowTopSecondContainer}>
-        <Pressable
-          style={styles.buttonruta}
-          onPress={() => setDisplayMyQR(true)}
-        >
-          <Text
-            style={{
-              ...{
-                color: "white",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              },
-              ...styles.shadoxboxing,
-            }}
-          >
-            Mi info
-          </Text>
+      <Text style={styles.title}>My Portfolio App</Text>
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.button} onPress={() => setDisplayMyQR(true)}>
+          <Text style={styles.buttonText}>Mi info</Text>
         </Pressable>
-        <Button
-          onPress={() => setDisplayMyQR(false)}
-          title="Mi Repo"
-          color="light-gray"
-          accessibilityLabel="Un botón pal QR"
-        />
+
+        <Pressable style={styles.button} onPress={() => setDisplayMyQR(false)}>
+          <Text style={styles.buttonText}>Mi QR</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -39,74 +20,35 @@ const Header = () => {
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  topContainer: {
-    height: "15%",
-    paddingTop: 50,
-    width: "100%",
-  },
-  firsttoprowContainer: {
+  title: {
     backgroundColor: "gray",
     textAlign: "center",
     fontWeight: "bold",
-    textAlignVertical: "center",
     fontSize: 30,
+    paddingVertical: 10,
   },
-  rowTopSecondContainer: {
+  buttonContainer: {
     flexDirection: "row",
     backgroundColor: "darkgray",
     justifyContent: "center",
     alignItems: "center",
+    paddingVertical: 10,
   },
-  buttonruta: {
+  button: {
     width: "50%",
-  },
-  bodystails: {
-    width: "100%",
-    borderWidth: 2,
-    borderColor: "black",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: "85%",
-  },
-  avatar: {
-    height: 90,
-    width: 90,
-    borderRadius: 100,
-  },
-  cosasQmeGustanMuxoEstails: {
     borderColor: "black",
     borderWidth: 1,
     borderStyle: "dashed",
-    padding: 20,
-    color: "darkred",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    fontSize: 16,
-    backgroundColor: "silver",
-  },
-  CentrarcodigoQR: {
-    justifyContent: "center",
-    borderWidth: 1,
-    width: "100%",
-    height: "100%",
     alignItems: "center",
   },
-  shadoxboxing: {
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    textTransform: "uppercase",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
+    shadowOffset: { width: 0, height: 7 },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-
     elevation: 15,
   },
 });
