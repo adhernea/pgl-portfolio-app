@@ -1,35 +1,61 @@
-import { useState } from "react";
-import {
-  Button,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import Header from "./components/header/Header";
 import Bodys from "./components/body/Bodys";
 import QRCode from "react-native-qrcode-svg";
+import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 
 export default function App() {
-  const [displayMyQR, setDisplayMyQR] = useState(true);
+  const [displayMyQR, setDisplayMyQR] = useState<boolean>(true);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+
+  const lightTheme = {
+    background: "#fff",
+    text: "#000",
+    buttonBackground: "gray",
+    buttonText: "#fff",
+    borderColor: "#ccc",
+  };
+
+  const darkTheme = {
+    background: "#333",
+    text: "#fff",
+    buttonBackground: "light",
+    buttonText: "#fff",
+    borderColor: "#666",
+  };
+
+  const theme = isDarkTheme ? darkTheme : lightTheme;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <ExpoStatusBar style={isDarkTheme ? "light" : "dark"} />
+
+      <Pressable
+        style={[
+          styles.themeButton,
+          { backgroundColor: theme.buttonBackground },
+        ]}
+        onPress={() => setIsDarkTheme(!isDarkTheme)}
+      >
+        <Text style={[styles.buttonText, { color: theme.buttonText }]}>
+          Cambiar a {isDarkTheme ? "Tema Claro" : "Tema Oscuro"}
+        </Text>
+      </Pressable>
+
       <View style={styles.topContainer}>
-        <Header></Header>
-      </View>
-      {displayMyQR ? (
-        <View style={styles.bodystails}>
-         <Bodys></Bodys>
-        </View>
-      ) : (
-        <View style={styles.bodystails}>
-          <View style={styles.CentrarcodigoQR}>
-            <QRCode value="https://github.com/adhernea" />
+        <Header setDisplayMyQR={setDisplayMyQR} theme={theme} />
+
+        {displayMyQR ? (
+          <View>
+            <Bodys theme={theme} />
           </View>
-        </View>
-      )}
+        ) : (
+          <View style={styles.qrContainer}>
+            <QRCode value="https://github.com/The-Albertox" />
+          </View>
+        )}
+      </View>
     </View>
   );
 }
@@ -37,72 +63,26 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
   topContainer: {
     height: "15%",
-    paddingTop: 50,
+
     width: "100%",
   },
-  firsttoprowContainer: {
-    backgroundColor: "gray",
-    textAlign: "center",
-    fontWeight: "bold",
-    textAlignVertical: "center",
-    fontSize: 30,
-  },
-  rowTopSecondContainer: {
-    flexDirection: "row",
-    backgroundColor: "darkgray",
+  qrContainer: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  buttonruta: {
-    width: "50%",
-  },
-  bodystails: {
-    width: "100%",
-    borderWidth: 2,
-    borderColor: "black",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: "85%",
-  },
-  avatar: {
-    height: 90,
-    width: 90,
-    borderRadius: 100,
-  },
-  cosasQmeGustanMuxoEstails: {
-    borderColor: "black",
-    borderWidth: 1,
-    borderStyle: "dashed",
-    padding: 20,
-    color: "darkred",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    fontSize: 16,
-    backgroundColor: "silver",
-  },
-  CentrarcodigoQR: {
-    justifyContent: "center",
-    borderWidth: 1,
+    marginVertical: "50%",
     width: "100%",
     height: "100%",
-    alignItems: "center",
   },
-  shadoxboxing: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-
-    elevation: 15,
+  themeButton: {
+    alignItems: "center",
+    paddingVertical: 10,
+    marginTop: 30,
+  },
+  buttonText: {
+    fontWeight: "bold",
+    textTransform: "uppercase",
   },
 });

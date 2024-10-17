@@ -1,38 +1,70 @@
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import { Audio } from "expo-av";
 
-const Bodys = () => {
+const Bodys = ({ theme }: any) => {
+  const meow = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/sounds/CATMEOW.mp3")
+    );
+
+    await sound.playAsync();
+  };
   return (
     <View>
       <View style={styles.headerContainer}>
-        <Image
-          style={styles.avatar}
-          source={require("../../assets/SofyanAmrabat.jpg")}
-        />
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionTitle}>Descripción sobre mí!</Text>
-          <Text>
-            Soy profe y me gusta mi trabajo aunque a veces me dé por enrevesar
-            prácticas para mis queridos alumnos
+        <Pressable onPress={meow}>
+          <Image
+            style={styles.avatar}
+            source={require("../../assets/authors.jpg")}
+          />
+        </Pressable>
+        <View
+          style={[
+            styles.descriptionContainer,
+            { backgroundColor: theme.buttonBackground },
+          ]}
+        >
+          <Text style={[styles.descriptionTitle, { color: theme.text }]}>
+            Descripción sobre mí!
+          </Text>
+          <Text style={[styles.descriptionDescription, { color: theme.text }]}>
+            Soy un alumno y me gusta estudiar(no es verdad) y en mi tiempo libre
+            me gusta jugar videojuegos, y romper el código de maneras que ni yo
+            sé cómo.
           </Text>
         </View>
       </View>
-      <Text style={styles.sectionTitle}>Cosas que me gustan mucho:</Text>
-      <ScrollView style={styles.scrollView}>
+
+      <Text style={[styles.sectionTitle, { color: theme.text }]}>
+        Cosas que me gustan mucho:
+      </Text>
+
+      <ScrollView
+        style={[styles.scrollView, { backgroundColor: theme.background }]}
+      >
         {[
-          "Salir a pasear",
-          "Senderismo",
-          "Ir a la playita",
-          "Domingos de misa",
-          "La guitarrita",
-          "El monte con lluvia",
-          "Viajar",
-          "Música variadita",
-          "Anime",
-          "Ducharme",
-          "Videojuegos",
+          "Salir con mi pareja",
+          "Ir a la playa",
+          "Escuchar música",
+          "Leer manga",
+          "Jugar videojuegos",
           "Ir de cenar romántica",
+          "romper el código",
         ].map((item, index) => (
-          <Text key={index} style={styles.interestsText}>
+          <Text
+            key={index}
+            style={[
+              styles.interestsText,
+              { color: theme.text, borderColor: theme.borderColor },
+            ]}
+          >
             {item}
           </Text>
         ))}
@@ -55,19 +87,20 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     margin: 10,
-    backgroundColor: "lightgray",
     padding: 10,
     borderRadius: 10,
     width: "70%",
-    marginTop: 50,
+    marginTop: 25,
   },
   descriptionTitle: {
     textAlign: "center",
     fontWeight: "700",
     fontSize: 20,
   },
+  descriptionDescription: {
+    textAlign: "center",
+  },
   sectionTitle: {
-    color: "black",
     fontWeight: "900",
     textTransform: "capitalize",
     fontSize: 20,
@@ -78,16 +111,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   interestsText: {
-    borderColor: "black",
     borderWidth: 1,
     borderStyle: "dashed",
     padding: 20,
-    color: "darkred",
     textAlign: "center",
     fontWeight: "bold",
     fontStyle: "italic",
     fontSize: 16,
-    backgroundColor: "silver",
     marginBottom: 10,
   },
 });
