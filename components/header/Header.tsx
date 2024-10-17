@@ -3,9 +3,7 @@ import { Pressable, View, Text, StyleSheet } from "react-native";
 const Header = ({ setDisplayMyQR }: any) => {
   return (
     <View>
-      <Pressable>
-        <Text style={styles.title}>My Portfolio App</Text>
-      </Pressable>
+      <Text style={styles.title}>My Portfolio App</Text>
 
       <View style={styles.buttonContainer}>
         <Pressable style={styles.button} onPress={() => setDisplayMyQR(true)}>

@@ -1,13 +1,30 @@
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import { Audio } from "expo-av";
 
 const Bodys = ({ theme }: any) => {
+  const meow = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/sounds/CATMEOW.mp3")
+    );
+
+    await sound.playAsync();
+  };
   return (
     <View>
       <View style={styles.headerContainer}>
-        <Image
-          style={styles.avatar}
-          source={require("../../assets/authors.jpg")}
-        />
+        <Pressable onPress={meow}>
+          <Image
+            style={styles.avatar}
+            source={require("../../assets/authors.jpg")}
+          />
+        </Pressable>
         <View
           style={[
             styles.descriptionContainer,
