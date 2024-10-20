@@ -4,10 +4,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 const ProfileInfo = () => {
   return (
     <View style={styles.profileContainer}>
-      <Image
-        style={styles.avatar}
-        source={require("../assets/SofyanAmrabat.jpg")}
-      />
+      <Image style={styles.avatar} source={require("../assets/camilo.jpg")} />
       <View style={styles.descriptionContainer}>
         <Text style={styles.title}>Descripción sobre mí!</Text>
         <Text>
