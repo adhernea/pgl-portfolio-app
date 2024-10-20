@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet, Image } from "react-native";
 
 const LikesList = () => {
   const likes = [
@@ -22,6 +22,12 @@ const LikesList = () => {
       {likes.map((like, index) => (
         <Text key={index} style={styles.likeText}>
           {like}
+          <Image
+            source={{
+              uri: "https://th.bing.com/th/id/OIP.VFcLLNaupqVhXkp7qsfDhwAAAA?rs=1&pid=ImgDetMain",
+            }}
+            style={styles.image}
+          />
         </Text>
       ))}
     </ScrollView>
@@ -44,6 +50,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: "silver",
     marginBottom: 10,
+  },
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: "cover",
   },
 });
 
